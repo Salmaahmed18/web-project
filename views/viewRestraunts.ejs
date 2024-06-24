@@ -20,15 +20,6 @@
         <div id="restaurantList" class="list"></div>
 
         <div class="container">
-            <form id="editRestaurantForm" class="hidden">
-                <h2>Edit Restaurant</h2>
-                <!-- Edit restaurant form fields here -->
-                <label for="edit-restaurant-name">Restaurant Name:</label>
-                <input type="text" id="edit-restaurant-name" name="restaurantName" required>
-                <!-- Other form fields... -->
-                <button type="submit" id="save-restaurant-button">Save</button>
-            </form>
-
             <form id="addRestaurantForm">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
@@ -36,10 +27,47 @@
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
                 
-                <!-- Add more input fields for other data -->
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" required>
+                
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+                
+                <label for="category">Category:</label>
+                <input type="text" id="category" name="category" required>
+                
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" required>
+                
+                <label for="openingTime">Opening Time:</label>
+                <input type="time" id="openingTime" name="openingTime" required>
+                
+                <label for="closingTime">Closing Time:</label>
+                <input type="time" id="closingTime" name="closingTime" required>
+                
+                <label for="menuUrl">Menu URL:</label>
+                <input type="url" id="menuUrl" name="menuUrl" required>
+                
+                <label for="locationUrl">Location URL:</label>
+                <input type="url" id="locationUrl" name="locationUrl" required>
+                
+                <label for="logoUrl">Logo URL:</label>
+                <input type="url" id="logoUrl" name="logoUrl" required>
+                
+                <label for="photoUrl">Photo URL:</label>
+                <input type="url" id="photoUrl" name="photoUrl" required>
+                
+                <label for="status">Status:</label>
+                <select id="status" name="status" required>
+                    <option value="open">Open</option>
+                    <option value="closed">Closed</option>
+                </select>
                 
                 <button type="submit">Add Restaurant</button>
             </form>
+            
+            
+
         </div>
 
         <div id="request-list">
@@ -72,6 +100,7 @@
             </ul>
         </div>
     </div>
+    
 
     <script>
         const restaurantData = <%= JSON.stringify(arr) %>;
