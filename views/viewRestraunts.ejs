@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= mytitle %></title>
+    <link rel="stylesheet" href="viewRestraunts.css">
+    <link rel="icon" href="https://cdn5.f-cdn.com/contestentries/70431/10651466/53406793a0826_thumb900.jpg" type="image/x-icon"/>
+</head>
+<body>
+    <h1>Manage Data</h1>
+    
+    <label for="type">Type:</label>
+    <select id="type" name="type" required>
+        <option value="Restaurant">Restaurant</option>
+        <option value="User">User</option>
+    </select>
+
+    <div id="restaurant-section" class="section">
+        <div id="restaurantList" class="list"></div>
+
+        <div class="container">
+            <form id="editRestaurantForm" class="hidden">
+                <h2>Edit Restaurant</h2>
+                <!-- Edit restaurant form fields here -->
+                <label for="edit-restaurant-name">Restaurant Name:</label>
+                <input type="text" id="edit-restaurant-name" name="restaurantName" required>
+                <!-- Other form fields... -->
+                <button type="submit" id="save-restaurant-button">Save</button>
+            </form>
+
+            <form id="addRestaurantForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <!-- Add more input fields for other data -->
+                
+                <button type="submit">Add Restaurant</button>
+            </form>
+        </div>
+
+        <div id="request-list">
+            <ul>
+                <% arr.forEach(restaurantdata => { %>
+                    <li>
+                        <h2><%= restaurantdata.name %></h2>
+                        <p>Email: <%= restaurantdata.email %></p>
+                        <p>Location: <%= restaurantdata.location %></p>
+                        <p>Description: <%= restaurantdata.description %></p>
+                        <p>Category: <%= restaurantdata.category %></p>
+                        <p>Phone: <%= restaurantdata.phone %></p>
+                        <p>Opening Time: <%= restaurantdata.openingTime %></p>
+                        <p>Closing Time: <%= restaurantdata.closingTime %></p>
+                        <p>Menu: <%= restaurantdata.menuUrl %></p>
+                        <p>Location: <%= restaurantdata.locationUrl %></p>
+                        <p>Logo: <%= restaurantdata.logoUrl %></p>
+                        <p>Photo: <%= restaurantdata.photoUrl %></p>
+                        <p>Status: <%= restaurantdata.status %></p>
+                        <p>
+                            <form action="/restaurants/<%= restaurantdata._id %>/edit" method="GET" style="display: inline;">
+                                <button type="submit">Edit</button>
+                            </form>
+                            <form action="/restaurants/<%= restaurantdata._id %>/delete" method="POST" style="display: inline;">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </p>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const restaurantData = <%= JSON.stringify(arr) %>;
+        const customerData = <%= JSON.stringify(userArr) %>;
+
+        document.getElementById('type').addEventListener('change', function() {
+            const restaurantSection = document.getElementById('restaurant-section');
+            const userSection = document.getElementById('user-section');
+            
+            if (this.value === 'Restaurant') {
+                restaurantSection.classList.remove('hidden');
+                userSection.classList.add('hidden');
+            } else {
+                restaurantSection.classList.add('hidden');
+                userSection.classList.remove('hidden');
+            }
+        });
+    </script>
+    <script src="viewRestraunts.js"></script>
+</body>
+</html>
